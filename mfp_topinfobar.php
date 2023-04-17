@@ -1,9 +1,9 @@
 <?php
 
-include "./classes/MenageSql.php";
+require_once __DIR__.'/classes/ModulesForPrestaMarketing.php';
+require_once __DIR__.'/classes/ModulesForPrestaConnector.php';
+require_once __DIR__.'/classes/ManageSql.php';
 
-use MFP\ModulesForPrestaConnector;
-use MFP\ModulesForPrestaMarketing;
 
 if (!defined('_PS_VERSION_')) {
     exit;
@@ -14,7 +14,7 @@ class mfp_topinfobar extends Module
 
     public $sqlQueries = [];
 
-    public $DB_tables = ["mfp_topinfobar"];
+    public array $DB_tables = ["mfp_topinfobar"];
     public function __construct()
     {
         $this->name = 'mfp_topinfobar';
@@ -50,16 +50,17 @@ class mfp_topinfobar extends Module
         if(!$this->registerHook('displayHeader')) return false;
 
 
-        $this->sqlQueries[] = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'mfp_topinfobar` (
-				  `id` int(11) NOT NULL AUTO_INCREMENT,				  
-				  `inforamation_conent` VARCHAR(255) NOT NULL,
-				  `status` int(1) NOT NULL,			  
-				  PRIMARY KEY (`id`)
-				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;';
-
-        $menagerSQL = new MenageSql($this->sqlQueries);
-
-        if($menagerSQL === false) return false;
+//        $this->sqlQueries[] = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.$this->name.'` (
+//				  `id` int(11) NOT NULL AUTO_INCREMENT,
+//				  `inforamation_conent` VARCHAR(255) NOT NULL,
+//				  `status` int(1) NOT NULL,
+//				  PRIMARY KEY (`id`)
+//				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;';
+//
+//        $menagerSQL = new MenageSql();
+//
+//
+//        if($menagerSQL->doQueriesArray($this->sqlQueries) === false) return false;
 
 
         return true;
@@ -79,8 +80,8 @@ class mfp_topinfobar extends Module
     public function getContent()
     {
         $output = '';
-
-        $output .= ModulesForPrestaMarketing::checkServerRequirements();
+        $mfpMarketing = new ModulesForPrestaMarketing();
+        $output .= $mfpMarketing->checkServerRequirements();
         return $output ;
     }
 

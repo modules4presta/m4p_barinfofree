@@ -1,11 +1,11 @@
 <?php
 
-include "../mfp_topinfobar.php";
+namespace MFP;
 
 class MenageSql {
 
 
-    public function __construct($sql)
+    public function doQueriesArray($sql)
     {
 
         foreach ($sql as $query) {

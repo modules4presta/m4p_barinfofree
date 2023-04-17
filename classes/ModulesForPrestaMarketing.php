@@ -1,9 +1,5 @@
 <?php
 
-
-namespace MFP;
-
-
 class ModulesForPrestaMarketing
 {
     public static function checkServerRequirements()
@@ -15,22 +11,50 @@ class ModulesForPrestaMarketing
         if ($ionCubeLoaderEnabled && version_compare($phpVersion, '7.0.0', '>=') && version_compare($prestashopVersion, '1.7.0.0', '>=')) {
             return 'Server meets the requirements';
         } else {
-            $message = 'Server does not meet the requirements: ';
+
             $requirements = [];
 
             if (!$ionCubeLoaderEnabled) {
-                $requirements[] = 'IonCube Loader is not installed';
+                $requirements[] = [
+                    'name' => 'IonCube Loader',
+                    'status' => 0
+                ];
+            }
+            else {
+                $requirements[] = [
+                    'name' => 'IonCube Loader',
+                    'status' => 1
+                ];
             }
 
             if (version_compare($phpVersion, '7.3.0', '<')) {
-                $requirements[] = 'PHP version is lower than 7.0.0';
+                $requirements[] = [
+                    'name' => 'PHP min 7.3.0',
+                    'status' => 0
+                ];
+            }
+            else {
+                $requirements[] = [
+                    'name' => 'PHP min 7.3.0',
+                    'status' => 1
+                ];
             }
 
             if (version_compare($prestashopVersion, '1.7.0.0', '<')) {
-                $requirements[] = 'PrestaShop version is lower than 1.7.0.0';
+
+                $requirements[] = [
+                    'name' => 'PrestaShop version is min requirements 1.7.0.0',
+                    'status' => 0
+                ];
+            }
+            else {
+                $requirements[] = [
+                    'name' => 'PrestaShop version is min requirements 1.7.0.0',
+                    'status' => 0
+                ];
             }
 
-            return $message . implode(', ', $requirements);
+            return $requirements;
         }
     }
 }

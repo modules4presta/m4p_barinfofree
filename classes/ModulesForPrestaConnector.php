@@ -1,6 +1,5 @@
 <?php
 
-namespace MFP;
 class ModulesForPrestaConnector
 {
     public static function newInstallation() {
