@@ -2,6 +2,9 @@
 
 include "./classes/MenageSql.php";
 
+use MFP\ModulesForPrestaConnector;
+use MFP\ModulesForPrestaMarketing;
+
 if (!defined('_PS_VERSION_')) {
     exit;
 }
@@ -58,6 +61,7 @@ class mfp_topinfobar extends Module
 
         if($menagerSQL === false) return false;
 
+
         return true;
     }
 
@@ -70,6 +74,14 @@ class mfp_topinfobar extends Module
 
     public function getDatabaseTables(){
         return $this->DB_tables;
+    }
+
+    public function getContent()
+    {
+        $output = '';
+
+        $output .= ModulesForPrestaMarketing::checkServerRequirements();
+        return $output ;
     }
 
     public function hookDisplayHeader()
