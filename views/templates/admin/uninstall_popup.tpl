@@ -1,4 +1,4 @@
-{extends 'popup.tpl'}
+
 
 {block name='content'}
     <p>{l s='Are you sure you want to uninstall the module:'}</p>
@@ -16,21 +16,4 @@
     </form>
 {/block}
 
-{block name='javascript_bottom'}
-    <script>
-        $(document).ready(function() {
-            $('#uninstall-form').submit(function(e) {
-                e.preventDefault();
-                var formData = $(this).serialize();
-                $.ajax({
-                    url: '{$module_link}ajax.php',
-                    type: 'POST',
-                    data: formData,
-                    success: function(response) {
-                        // Obsłuż odpowiedź po udanym zatwierdzeniu formularza
-                    }
-                });
-            });
-        });
-    </script>
-{/block}
+
