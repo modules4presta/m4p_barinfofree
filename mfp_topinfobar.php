@@ -60,7 +60,7 @@ class mfp_topinfobar extends Module
     public function uninstall()
     {
         // Deletes module tables
-        (new ManageSql())->uninstallQueries();
+
 
         if (file_exists($this->_path.'/views/templates/admin/uninstall_popup.tpl')) {
             $this->context->smarty->assign(array(
@@ -71,10 +71,10 @@ class mfp_topinfobar extends Module
             $output = $this->display(__FILE__, 'uninstall_popup.tpl');
             $this->context->controller->addJqueryPlugin('fancybox');
             $this->context->controller->addCSS($this->_path.'views/css/uninstall_popup.css');
-            $this->context->controller->addJS($this->_path.'views/js/uninstall_popup.js');
 
             return $output;
         }
+        (new ManageSql())->uninstallQueries();
         if (!parent::uninstall()) {
             return false;
         }

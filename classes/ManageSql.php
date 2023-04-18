@@ -30,7 +30,7 @@ class ManageSql {
 
 
         foreach ($this->DB_tables as $table) {
-            if (Db::getInstance()->execute("DROP TABLE `".mfp_topinfobar::getPrefixDb().$table."`;") === false) {
+            if (Db::getInstance()->execute("DROP TABLE IF EXISTS `".mfp_topinfobar::getPrefixDb().$table."`;") === false) {
                 return false;
             }
         }
