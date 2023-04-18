@@ -1,6 +1,6 @@
 <?php
 
-class ModulesForPrestaMarketing
+class ModulesForPrestaMarketing extends mfp_topinfobar
 {
     public static function checkServerRequirements()
     {
@@ -56,5 +56,15 @@ class ModulesForPrestaMarketing
 
             return $requirements;
         }
+    }
+
+    public function getRequaiermentsTemplate() {
+
+        $this->context->smarty->assign([
+            'requaierments' => $this->checkServerRequirements(),
+
+        ]);
+
+        return $this->content = $this->context->smarty->fetch(_PS_MODULE_DIR_ . 'mfp_topinfobar/views/templates/admin/modulesforpresta.tpl');
     }
 }

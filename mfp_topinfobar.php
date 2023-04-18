@@ -63,15 +63,10 @@ class mfp_topinfobar extends Module
         return parent::uninstall();
     }
 
-    public function getDatabaseTables(){
-        return $this->DB_tables;
-    }
-
     public function getContent()
     {
         $output = '';
-        $mfpMarketing = new ModulesForPrestaMarketing();
-        $output .= $mfpMarketing->checkServerRequirements();
+        $output .= (new ModulesForPrestaMarketing())->getRequaiermentsTemplate();
         return $output ;
     }
 
@@ -85,6 +80,7 @@ class mfp_topinfobar extends Module
             'ajax_get_map' => $ajax_get_map
         ));
         $this->context->controller->addJS($this->_path . 'views/js/main.js');
+        $this->context->controller->addCSS($this->_path . 'views/css/main.css');
     }
 
 }

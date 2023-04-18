@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'../mfp_topinfobar.php';
+require_once __DIR__.'/../mfp_topinfobar.php';
 
 class ManageSql {
 
