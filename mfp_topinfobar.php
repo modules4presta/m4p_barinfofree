@@ -12,9 +12,7 @@ if (!defined('_PS_VERSION_')) {
 class mfp_topinfobar extends Module
 {
 
-    public $sqlQueries = [];
 
-    public array $DB_tables = ["mfp_topinfobar"];
     public function __construct()
     {
         $this->name = 'mfp_topinfobar';
@@ -39,7 +37,10 @@ class mfp_topinfobar extends Module
             $this->warning = $this->l('No name provided');
         }
     }
+    public static function getPrefixDb() {
 
+        return _DB_PREFIX_;
+    }
 
     public function install()
     {
@@ -49,18 +50,7 @@ class mfp_topinfobar extends Module
         }
         if(!$this->registerHook('displayHeader')) return false;
 
-
-//        $this->sqlQueries[] = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.$this->name.'` (
-//				  `id` int(11) NOT NULL AUTO_INCREMENT,
-//				  `inforamation_conent` VARCHAR(255) NOT NULL,
-//				  `status` int(1) NOT NULL,
-//				  PRIMARY KEY (`id`)
-//				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;';
-//
-//        $menagerSQL = new MenageSql();
-//
-//
-//        if($menagerSQL->doQueriesArray($this->sqlQueries) === false) return false;
+        (new ManageSql())->installQuaries();
 
 
         return true;
@@ -69,7 +59,7 @@ class mfp_topinfobar extends Module
     public function uninstall()
     {
         // Deletes module tables
-        Db::getInstance()->execute("DROP TABLE `'._DB_PREFIX_.'mfpswitchinvoicebill`;");
+        (new ManageSql())->uninstallQueries();
         return parent::uninstall();
     }
 
@@ -90,6 +80,7 @@ class mfp_topinfobar extends Module
         $link = new Link;
         $parameters_map = array("action" => "setinvoice");
         $ajax_get_map = $link->getModuleLink('mfp_switch_invoice', 'ajax', $parameters_map);
+
         Media::addJsDef(array(
             'ajax_get_map' => $ajax_get_map
         ));
