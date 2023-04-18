@@ -32,7 +32,7 @@ class mfp_topinfobar extends Module
         $this->displayName = $this->l('Top info bar');
         $this->description = $this->l('Module add top bar with information');
 
-        $this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
+        $this->confirmUninstall = $this->confirmUninstall();
 
         if (!Configuration::get('SELECT ADD')) {
             $this->warning = $this->l('No name provided');
@@ -56,13 +56,21 @@ class mfp_topinfobar extends Module
 
         return true;
     }
-
+    public function confirmUninstall()
+    {
+        $this->context->smarty->assign(array(
+            'module_display_name' => $this->displayName
+        ));
+//        echo $this->_path.'/views/templates/admin';
+        return  $this->display(__FILE__, 'views/templates/admin/uninstall_popup.tpl');
+    }
     public function uninstall()
     {
         // Deletes module tables
 
 
-        if (file_exists($this->_path.'/views/templates/admin/uninstall_popup.tpl')) {
+        if ($this->active) {
+
             $this->context->smarty->assign(array(
                 'module_name' => $this->name,
                 'module_display_name' => $this->displayName,
@@ -71,8 +79,10 @@ class mfp_topinfobar extends Module
             $output = $this->display(__FILE__, 'uninstall_popup.tpl');
             $this->context->controller->addJqueryPlugin('fancybox');
             $this->context->controller->addCSS($this->_path.'views/css/uninstall_popup.css');
+            $this->context->smarty->assign('module_display_name', $this->displayName);
 
-            return $output;
+            echo $output;
+            return true;
         }
         (new ManageSql())->uninstallQueries();
         if (!parent::uninstall()) {
