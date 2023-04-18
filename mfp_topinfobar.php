@@ -20,6 +20,7 @@ class mfp_topinfobar extends Module
         $this->version = '1.0.0';
         $this->author = 'Nice Code';
         $this->need_instance = 0;
+        $this->_path = _PS_MODULE_DIR_.$this->name;
         $this->ps_versions_compliancy = [
             'min' => '1.7',
             'max' => '8.1.99',
@@ -60,7 +61,25 @@ class mfp_topinfobar extends Module
     {
         // Deletes module tables
         (new ManageSql())->uninstallQueries();
-        return parent::uninstall();
+
+        if (file_exists($this->_path.'/views/templates/admin/uninstall_popup.tpl')) {
+            $this->context->smarty->assign(array(
+                'module_name' => $this->name,
+                'module_display_name' => $this->displayName,
+            ));
+
+            $output = $this->display(__FILE__, 'uninstall_popup.tpl');
+            $this->context->controller->addJqueryPlugin('fancybox');
+            $this->context->controller->addCSS($this->_path.'views/css/uninstall_popup.css');
+            $this->context->controller->addJS($this->_path.'views/js/uninstall_popup.js');
+
+            return $output;
+        }
+        if (!parent::uninstall()) {
+            return false;
+        }
+        return true;
+
     }
 
     public function getContent()
