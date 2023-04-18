@@ -10,7 +10,7 @@ class ManageSql {
 
     public function installQuaries()
     {
-        $this->sqlQueries[] = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.$this->name.'` (
+        $this->sqlQueries[] = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.$this->DB_tables[0].'` (
 				  `id` int(11) NOT NULL AUTO_INCREMENT,
 				  `inforamation_conent` VARCHAR(255) NOT NULL,
 				  `status` int(1) NOT NULL,
