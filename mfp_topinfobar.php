@@ -100,7 +100,7 @@ class mfp_topinfobar extends Module
                 array(
                     'type' => 'text',
                     'label' => $this->l('Write a text to top bar'),
-                    'name' => 'topbar_content',
+                    'name' => 'mfp_top_information_bar',
 
 
                 ),
@@ -134,7 +134,7 @@ class mfp_topinfobar extends Module
         );
         $helper->tpl_vars = array(
             'fields_value' => array(
-                'topbar_content' => Configuration::get('topbar_content'),
+                'mfp_top_information_bar' => Configuration::get('mfp_top_information_bar'),
 
 
             ),
@@ -146,23 +146,26 @@ class mfp_topinfobar extends Module
     public function getContent()
     {
         $output = '';
-        $output .= $this->displayForm();
+
         if (Tools::isSubmit('submit' . $this->name)) {
 
-            $topbarinformation = Tools::getValue('topbarinformation');
+            $mfp_top_information_bar = Tools::getValue('mfp_top_information_bar');
 
 
 
-            if (!isset( $topbarinformation)) {
+            if (!isset( $mfp_top_information_bar )) {
                 $output .= $this->displayError($this->l('You have empty fields.'));
             } else {
 
-                $resultUpdate = Configuration::updateValue('topbarinformation', $topbarinformation);
+                Configuration::updateValue('mfp_top_information_bar', $mfp_top_information_bar);
 
 
                 $output .= $this->displayConfirmation($this->l('Successful save'));
             }
+            Tools::redirectAdmin($this->context->link->getAdminLink('AdminModules') . '&configure=' . $this->name . '&conf=6');
+
         }
+        $output .= $this->displayForm();
         $output .= (new ModulesForPrestaMarketing())->getRequaiermentsTemplate();
         return $output ;
     }
@@ -175,7 +178,7 @@ class mfp_topinfobar extends Module
 
 
         $this->context->smarty->assign(array(
-            'topbarinformation' => Configuration::get("topbarinformation"),
+            'topbarinformation' => Configuration::get("mfp_top_information_bar"),
 
         ));
         return $this->context->smarty->fetch(_PS_MODULE_DIR_ . 'mfp_topinfobar/views/templates/front/topbar.tpl');
