@@ -104,6 +104,32 @@ class mfp_topinfobar extends Module
 
 
                 ),
+                array(
+                    'type' => 'text',
+                    'label' => $this->l('Font size'),
+                    'name' => 'mfp_text_size',
+                    'desc' => $this->l('Enter size in pixels'),
+                ),
+                array(
+                    'type' => 'color',
+                    'label' => $this->l('Set Color text'),
+                    'name' => 'mfp_text_color',
+                    'lang' => false,
+                    'id' => 'text_color',
+                    'data-hex' => true,
+
+                    'desc' => $this->l('Enter hex code.'),
+                ),
+                array(
+                    'type' => 'color',
+                    'label' => $this->l('Set Color bar'),
+                    'name' => 'mfp_bar_color',
+                    'lang' => false,
+                    'id' => 'bar_color',
+                    'data-hex' => true,
+
+                    'desc' => $this->l('Enter hex code.'),
+                ),
 
             ),
             'submit' => array(
@@ -135,6 +161,9 @@ class mfp_topinfobar extends Module
         $helper->tpl_vars = array(
             'fields_value' => array(
                 'mfp_top_information_bar' => Configuration::get('mfp_top_information_bar'),
+                'mfp_bar_color' => Configuration::get('mfp_bar_color'),
+                'mfp_text_color' => Configuration::get('mfp_text_color'),
+                'mfp_text_size' => Configuration::get('mfp_text_size'),
 
 
             ),
@@ -150,6 +179,9 @@ class mfp_topinfobar extends Module
         if (Tools::isSubmit('submit' . $this->name)) {
 
             $mfp_top_information_bar = Tools::getValue('mfp_top_information_bar');
+            $mfp_bar_color = Tools::getValue('mfp_bar_color');
+            $mfp_text_color = Tools::getValue('mfp_text_color');
+            $mfp_text_size = Tools::getValue('mfp_text_size');
 
 
 
@@ -158,6 +190,9 @@ class mfp_topinfobar extends Module
             } else {
 
                 Configuration::updateValue('mfp_top_information_bar', $mfp_top_information_bar);
+                Configuration::updateValue('mfp_text_color', $mfp_text_color);
+                Configuration::updateValue('mfp_text_size', $mfp_text_size);
+                Configuration::updateValue('mfp_bar_color', $mfp_bar_color);
 
 
                 $output .= $this->displayConfirmation($this->l('Successful save'));
@@ -179,6 +214,9 @@ class mfp_topinfobar extends Module
 
         $this->context->smarty->assign(array(
             'topbarinformation' => Configuration::get("mfp_top_information_bar"),
+            'mfp_text_size' => Configuration::get("mfp_text_size"),
+            'mfp_bar_color' => Configuration::get("mfp_bar_color"),
+            'mfp_text_color' => Configuration::get("mfp_text_color"),
 
         ));
         return $this->context->smarty->fetch(_PS_MODULE_DIR_ . 'mfp_topinfobar/views/templates/front/topbar.tpl');
