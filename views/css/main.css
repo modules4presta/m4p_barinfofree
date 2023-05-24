@@ -1,4 +1,7 @@
 /* Modules for Presta default css */
+main {
+    margin-top:40px;
+}
 
 #uninstall-popup .modal-content {
     border-radius: 0;
@@ -46,4 +49,13 @@
 }
 .mfp_topinfobar--content p {
     margin-bottom: 0;
+}
+#close-display-top-bar-mfp {
+    position:absolute;
+    right:20px;
+    top:10px;
+    background:transparent;
+    outline:0;
+    border:0;
+    cursor:pointer;
 }

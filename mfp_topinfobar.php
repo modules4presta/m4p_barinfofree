@@ -1,9 +1,5 @@
 <?php
 
-require_once __DIR__.'/classes/ModulesForPrestaMarketing.php';
-require_once __DIR__.'/classes/ModulesForPrestaConnector.php';
-require_once __DIR__.'/classes/ManageSql.php';
-
 
 if (!defined('_PS_VERSION_')) {
     exit;
@@ -51,7 +47,7 @@ class mfp_topinfobar extends Module
         }
         if(!$this->registerHook('displayHeader')) return false;
 
-        (new ManageSql())->installQuaries();
+        $this->installQuaries();
 
 
         return true;
@@ -75,15 +71,8 @@ class mfp_topinfobar extends Module
             'module_display_name' => $this->displayName,
         ));
 
-        $output = $this->display(__FILE__, 'uninstall_popup.tpl');
-        $this->context->controller->addJqueryPlugin('fancybox');
-        $this->context->controller->addCSS($this->_path.'views/css/uninstall_popup.css');
-        $this->context->smarty->assign('module_display_name', $this->displayName);
-        $this->context->controller->confirmUninstall($this->l('Are you sure you want to uninstall this module?'), $output);
 
-        echo $output;
-
-        (new ManageSql())->uninstallQueries();
+        $this->uninstallQueries();
         if (!parent::uninstall()) {
             return false;
         }
@@ -130,6 +119,24 @@ class mfp_topinfobar extends Module
 
                     'desc' => $this->l('Enter hex code.'),
                 ),
+                array(
+                    'type' => 'switch',
+                    'label' => $this->l('Możliwość wyłączenia paska informacyjnego'),
+                    'name' => 'mfp_top_bar_switch',
+                    'is_bool' => true,
+                    'values' => array(
+                        array(
+                            'id' => 'active_on',
+                            'value' => 1,
+                            'label' => $this->l('Włącz')
+                        ),
+                        array(
+                            'id' => 'active_off',
+                            'value' => 0,
+                            'label' => $this->l('Wyłącz')
+                        )
+                    ),
+                )
 
             ),
             'submit' => array(
@@ -164,6 +171,7 @@ class mfp_topinfobar extends Module
                 'mfp_bar_color' => Configuration::get('mfp_bar_color'),
                 'mfp_text_color' => Configuration::get('mfp_text_color'),
                 'mfp_text_size' => Configuration::get('mfp_text_size'),
+                'mfp_top_bar_switch' => Configuration::get('mfp_top_bar_switch'),
 
 
             ),
@@ -182,6 +190,7 @@ class mfp_topinfobar extends Module
             $mfp_bar_color = Tools::getValue('mfp_bar_color');
             $mfp_text_color = Tools::getValue('mfp_text_color');
             $mfp_text_size = Tools::getValue('mfp_text_size');
+            $mfp_top_bar_switch = Tools::getValue('mfp_top_bar_switch');
 
 
 
@@ -193,6 +202,7 @@ class mfp_topinfobar extends Module
                 Configuration::updateValue('mfp_text_color', $mfp_text_color);
                 Configuration::updateValue('mfp_text_size', $mfp_text_size);
                 Configuration::updateValue('mfp_bar_color', $mfp_bar_color);
+                Configuration::updateValue('mfp_top_bar_switch', $mfp_top_bar_switch);
 
 
                 $output .= $this->displayConfirmation($this->l('Successful save'));
@@ -201,7 +211,7 @@ class mfp_topinfobar extends Module
 
         }
         $output .= $this->displayForm();
-        $output .= (new ModulesForPrestaMarketing())->getRequaiermentsTemplate();
+//        $output .= (new ModulesForPrestaMarketing())->getRequaiermentsTemplate();
         return $output ;
     }
 
@@ -217,9 +227,41 @@ class mfp_topinfobar extends Module
             'mfp_text_size' => Configuration::get("mfp_text_size"),
             'mfp_bar_color' => Configuration::get("mfp_bar_color"),
             'mfp_text_color' => Configuration::get("mfp_text_color"),
+            'mfp_top_bar_switch' => Configuration::get("mfp_top_bar_switch"),
 
         ));
         return $this->context->smarty->fetch(_PS_MODULE_DIR_ . 'mfp_topinfobar/views/templates/front/topbar.tpl');
     }
+    public $sqlQueries = [];
 
+    public array $DB_tables = ["mfp_topinfobar"];
+
+    public function installQuaries()
+    {
+        $this->sqlQueries[] = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.$this->DB_tables[0].'` (
+				  `id` int(11) NOT NULL AUTO_INCREMENT,
+				  `inforamation_conent` VARCHAR(255) NOT NULL,
+				  `status` int(1) NOT NULL,
+				  PRIMARY KEY (`id`)
+				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;';
+
+        foreach ($this->sqlQueries as $query) {
+            if (Db::getInstance()->execute($query) === false) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function uninstallQueries()
+    {
+
+
+        foreach ($this->DB_tables as $table) {
+            if (Db::getInstance()->execute("DROP TABLE IF EXISTS `".mfp_msc_clarity::getPrefixDb().$table."`;") === false) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
