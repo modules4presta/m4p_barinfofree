@@ -13,7 +13,7 @@ class mfp_topinfobar extends Module
     {
         $this->name = 'mfp_topinfobar';
         $this->tab = 'front_office_features';
-        $this->version = '1.0.0';
+        $this->version = '1.0.3';
         $this->author = 'Modules for Presta';
         $this->need_instance = 0;
         $this->_path = _PS_MODULE_DIR_.$this->name;
@@ -28,7 +28,6 @@ class mfp_topinfobar extends Module
         $this->displayName = $this->l('Top info bar');
         $this->description = $this->l('Module add top bar with information');
 
-//        $this->confirmUninstall = $this->confirmUninstall();
 
         if (!Configuration::get('SELECT ADD')) {
             $this->warning = $this->l('No name provided');

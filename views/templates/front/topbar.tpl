@@ -7,7 +7,7 @@
                 </div>
             </div>
             {if $mfp_top_bar_switch}
-                <button id="close-display-top-bar-mfp" style="color:{$mfp_text_color};font-size: {$mfp_text_size}px">X</button>
+                <button id="close-display-top-bar-mfp" style="color:{$mfp_text_color};font-size: {$mfp_text_size}px">&#x274C;</button>
             {/if}
         </div>
     </div>
