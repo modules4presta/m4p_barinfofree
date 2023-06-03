@@ -2,7 +2,7 @@
 <module>
     <name>mfp_topinfobar</name>
     <displayName><![CDATA[Pasek informacyjny]]></displayName>
-    <version><![CDATA[1.0.0]]></version>
+    <version><![CDATA[1.0.3]]></version>
     <description><![CDATA[Moduł dodaje pasek do zamieszczania informacji]]></description>
     <author><![CDATA[Modules for Presta]]></author>
     <tab><![CDATA[front_office_features]]></tab>

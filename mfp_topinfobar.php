@@ -216,7 +216,7 @@ class mfp_topinfobar extends Module
 
     public function hookDisplayHeader()
     {
-
+        if (isset($_COOKIE['mfp_topbar']) && $_COOKIE['mfp_topbar'] == '1') return;
         $this->context->controller->addJS($this->_path . 'views/js/main.js');
         $this->context->controller->addCSS($this->_path . 'views/css/main.css');
 
