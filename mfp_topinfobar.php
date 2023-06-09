@@ -4,17 +4,16 @@
 if (!defined('_PS_VERSION_')) {
     exit;
 }
-
+require_once dirname(__FILE__) . '/classes/ModulesForPrestaMarketingTopinfobar.php';
 class mfp_topinfobar extends Module
 {
-
-
+    public $content = '';
     public function __construct()
     {
         $this->name = 'mfp_topinfobar';
         $this->tab = 'front_office_features';
-        $this->version = '1.0.4';
-        $this->author = 'Modules for Presta';
+        $this->version = '1.0.5';
+        $this->author = 'Modules4Presta';
         $this->need_instance = 0;
         $this->_path = _PS_MODULE_DIR_.$this->name;
         $this->ps_versions_compliancy = [
@@ -51,20 +50,9 @@ class mfp_topinfobar extends Module
 
         return true;
     }
-    public function confirmUninstall()
-    {
-        $this->context->smarty->assign(array(
-            'module_display_name' => $this->displayName
-        ));
-//        echo $this->_path.'/views/templates/admin';
-        return  $this->display(__FILE__, 'views/templates/admin/uninstall_popup.tpl');
-    }
+
     public function uninstall()
     {
-        // Deletes module tables
-
-
-
         $this->context->smarty->assign(array(
             'module_name' => $this->name,
             'module_display_name' => $this->displayName,
@@ -120,19 +108,19 @@ class mfp_topinfobar extends Module
                 ),
                 array(
                     'type' => 'switch',
-                    'label' => $this->l('Możliwość wyłączenia paska informacyjnego'),
+                    'label' => $this->l('You can turn on/off top bar'),
                     'name' => 'mfp_top_bar_switch',
                     'is_bool' => true,
                     'values' => array(
                         array(
                             'id' => 'active_on',
                             'value' => 1,
-                            'label' => $this->l('Włącz')
+                            'label' => $this->l('On')
                         ),
                         array(
                             'id' => 'active_off',
                             'value' => 0,
-                            'label' => $this->l('Wyłącz')
+                            'label' => $this->l('Off')
                         )
                     ),
                 )
@@ -176,6 +164,7 @@ class mfp_topinfobar extends Module
             ),
             'languages' => $this->context->controller->getLanguages(),
         );
+
         return $helper->generateForm($fields_form);
     }
 
@@ -209,8 +198,16 @@ class mfp_topinfobar extends Module
             Tools::redirectAdmin($this->context->link->getAdminLink('AdminModules') . '&configure=' . $this->name . '&conf=6');
 
         }
-        $output .= $this->displayForm();
-//        $output .= (new ModulesForPrestaMarketing())->getRequaiermentsTemplate();
+        $this->context->smarty->assign(array(
+            'modules_ads' => ModulesForPrestaMarketingTopinfobar::getAdsFromModules4Presta()
+        ));
+        $this->content .= $this->context->smarty->fetch(_PS_MODULE_DIR_.$this->name.'/views/templates/admin/m4p_ads.tpl');
+
+        $this->context->smarty->assign(array(
+            'content' => $this->content,
+            'modules_ads' => ModulesForPrestaMarketingTopinfobar::getAdsFromModules4Presta()
+        ));
+        $output .= $this->displayForm().$this->content;
         return $output ;
     }
 
