@@ -12,7 +12,7 @@ class mfp_topinfobar extends Module
     {
         $this->name = 'mfp_topinfobar';
         $this->tab = 'front_office_features';
-        $this->version = '1.0.5';
+        $this->version = '1.1.0';
         $this->author = 'Modules4Presta';
         $this->need_instance = 0;
         $this->_path = _PS_MODULE_DIR_.$this->name;
