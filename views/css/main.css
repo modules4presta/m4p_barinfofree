@@ -34,7 +34,7 @@
 
 /* -- Modules for Presta default css -- */
 
-.mfp_topinfobar {
+.m4p_topinfobar {
     position: fixed;
     z-index: 1000;
     top:0;
@@ -43,14 +43,14 @@
     width: 100%;
     background-color: #000;
 }
-.mfp_topinfobar--content {
+.m4p_topinfobar--content {
     text-align: center;
     padding: 10px;
 }
-.mfp_topinfobar--content p {
+.m4p_topinfobar--content p {
     margin-bottom: 0;
 }
-#close-display-top-bar-mfp {
+#close-display-top-bar-m4p {
     position:absolute;
     right:20px;
     top:10px;

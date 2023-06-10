@@ -1,10 +1,10 @@
-$(document).on('click', '#close-display-top-bar-mfp', function() {
+$(document).on('click', '#close-display-top-bar-m4p', function() {
 
     $("#close-display-top-bar-mfp-content").hide();
     $("header").css("margin-top", "0");
 
 
-    const cookieName = 'mfp_topbar';
+    const cookieName = 'm4p_topbar';
     const cookieValue = '1';
     const expirationDays = 7;
 

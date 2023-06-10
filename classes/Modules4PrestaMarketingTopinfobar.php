@@ -73,7 +73,7 @@ class Modules4PrestaMarketingTopinfobar
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://modules4presta.io/index.php?action=getAdsForModul&fc=module&module=m4p_license_manager&controller=ajax&modulename='.urlencode('m4p_topinfobar'),
+            CURLOPT_URL => 'https://modules4presta.io/index.php?action=getAdsForModul&fc=module&module=mfp_license_manager&controller=ajax&modulename='.urlencode('m4p_topinfobar'),
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
