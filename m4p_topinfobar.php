@@ -53,11 +53,6 @@ class m4p_topinfobar extends Module
 
     public function uninstall()
     {
-        $this->context->smarty->assign(array(
-            'module_name' => $this->name,
-            'module_display_name' => $this->displayName,
-        ));
-
 
         $this->uninstallQueries();
         if (!parent::uninstall()) {
@@ -76,20 +71,20 @@ class m4p_topinfobar extends Module
                 array(
                     'type' => 'text',
                     'label' => $this->l('Write a text to top bar'),
-                    'name' => 'mfp_top_information_bar',
+                    'name' => 'm4p_top_information_bar',
 
 
                 ),
                 array(
                     'type' => 'text',
                     'label' => $this->l('Font size'),
-                    'name' => 'mfp_text_size',
+                    'name' => 'm4p_text_size',
                     'desc' => $this->l('Enter size in pixels'),
                 ),
                 array(
                     'type' => 'color',
                     'label' => $this->l('Set Color text'),
-                    'name' => 'mfp_text_color',
+                    'name' => 'm4p_text_color',
                     'lang' => false,
                     'id' => 'text_color',
                     'data-hex' => true,
@@ -99,7 +94,7 @@ class m4p_topinfobar extends Module
                 array(
                     'type' => 'color',
                     'label' => $this->l('Set Color bar'),
-                    'name' => 'mfp_bar_color',
+                    'name' => 'm4p_bar_color',
                     'lang' => false,
                     'id' => 'bar_color',
                     'data-hex' => true,
@@ -109,7 +104,7 @@ class m4p_topinfobar extends Module
                 array(
                     'type' => 'switch',
                     'label' => $this->l('You can turn on/off top bar'),
-                    'name' => 'mfp_top_bar_switch',
+                    'name' => 'm4p_top_bar_switch',
                     'is_bool' => true,
                     'values' => array(
                         array(
@@ -154,11 +149,11 @@ class m4p_topinfobar extends Module
         );
         $helper->tpl_vars = array(
             'fields_value' => array(
-                'mfp_top_information_bar' => Configuration::get('mfp_top_information_bar'),
-                'mfp_bar_color' => Configuration::get('mfp_bar_color'),
-                'mfp_text_color' => Configuration::get('mfp_text_color'),
-                'mfp_text_size' => Configuration::get('mfp_text_size'),
-                'mfp_top_bar_switch' => Configuration::get('mfp_top_bar_switch'),
+                'm4p_top_information_bar' => Configuration::get('m4p_top_information_bar'),
+                'm4p_bar_color' => Configuration::get('m4p_bar_color'),
+                'm4p_text_color' => Configuration::get('m4p_text_color'),
+                'm4p_text_size' => Configuration::get('m4p_text_size'),
+                'm4p_top_bar_switch' => Configuration::get('m4p_top_bar_switch'),
 
 
             ),
@@ -174,23 +169,23 @@ class m4p_topinfobar extends Module
 
         if (Tools::isSubmit('submit' . $this->name)) {
 
-            $mfp_top_information_bar = Tools::getValue('mfp_top_information_bar');
-            $mfp_bar_color = Tools::getValue('mfp_bar_color');
-            $mfp_text_color = Tools::getValue('mfp_text_color');
-            $mfp_text_size = Tools::getValue('mfp_text_size');
-            $mfp_top_bar_switch = Tools::getValue('mfp_top_bar_switch');
+            $m4p_top_information_bar = Tools::getValue('m4p_top_information_bar');
+            $m4p_bar_color = Tools::getValue('m4p_bar_color');
+            $m4p_text_color = Tools::getValue('m4p_text_color');
+            $m4p_text_size = Tools::getValue('m4p_text_size');
+            $m4p_top_bar_switch = Tools::getValue('m4p_top_bar_switch');
 
 
 
-            if (!isset( $mfp_top_information_bar )) {
+            if (!isset( $m4p_top_information_bar )) {
                 $output .= $this->displayError($this->l('You have empty fields.'));
             } else {
 
-                Configuration::updateValue('mfp_top_information_bar', $mfp_top_information_bar);
-                Configuration::updateValue('mfp_text_color', $mfp_text_color);
-                Configuration::updateValue('mfp_text_size', $mfp_text_size);
-                Configuration::updateValue('mfp_bar_color', $mfp_bar_color);
-                Configuration::updateValue('mfp_top_bar_switch', $mfp_top_bar_switch);
+                Configuration::updateValue('m4p_top_information_bar', $m4p_top_information_bar);
+                Configuration::updateValue('m4p_text_color', $m4p_text_color);
+                Configuration::updateValue('m4p_text_size', $m4p_text_size);
+                Configuration::updateValue('m4p_bar_color', $m4p_bar_color);
+                Configuration::updateValue('m4p_top_bar_switch', $m4p_top_bar_switch);
 
 
                 $output .= $this->displayConfirmation($this->l('Successful save'));
@@ -213,17 +208,17 @@ class m4p_topinfobar extends Module
 
     public function hookDisplayHeader()
     {
-        if (isset($_COOKIE['mfp_topbar']) && $_COOKIE['mfp_topbar'] == '1') return;
+        if (isset($_COOKIE['m4p_topbar']) && $_COOKIE['m4p_topbar'] == '1') return;
         $this->context->controller->addJS($this->_path . 'views/js/main.js');
         $this->context->controller->addCSS($this->_path . 'views/css/main.css');
 
 
         $this->context->smarty->assign(array(
-            'topbarinformation' => Configuration::get("mfp_top_information_bar"),
-            'mfp_text_size' => Configuration::get("mfp_text_size"),
-            'mfp_bar_color' => Configuration::get("mfp_bar_color"),
-            'mfp_text_color' => Configuration::get("mfp_text_color"),
-            'mfp_top_bar_switch' => Configuration::get("mfp_top_bar_switch"),
+            'topbarinformation' => Configuration::get("m4p_top_information_bar"),
+            'm4p_text_size' => Configuration::get("m4p_text_size"),
+            'm4p_bar_color' => Configuration::get("m4p_bar_color"),
+            'm4p_text_color' => Configuration::get("m4p_text_color"),
+            'm4p_top_bar_switch' => Configuration::get("m4p_top_bar_switch"),
 
         ));
         return $this->context->smarty->fetch(_PS_MODULE_DIR_ . 'm4p_topinfobar/views/templates/front/topbar.tpl');
