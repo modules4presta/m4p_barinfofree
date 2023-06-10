@@ -1,7 +1,7 @@
 $(document).on('click', '#close-display-top-bar-m4p', function() {
 
-    $("#close-display-top-bar-mfp-content").hide();
-    $("header").css("margin-top", "0");
+    $("#close-display-top-bar-m4p-content").hide();
+    $(".header-top").css("margin-top", "0");
 
 
     const cookieName = 'm4p_topbar';
