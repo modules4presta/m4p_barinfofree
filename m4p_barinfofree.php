@@ -12,7 +12,7 @@ class m4p_barinfofree extends Module
     {
         $this->name = 'm4p_barinfofree';
         $this->tab = 'front_office_features';
-        $this->version = '1.1.4';
+        $this->version = '1.1.5';
         $this->author = 'Modules4Presta.io';
         $this->need_instance = 0;
         $this->_path = _PS_MODULE_DIR_.$this->name;
@@ -54,7 +54,7 @@ class m4p_barinfofree extends Module
     public function uninstall()
     {
 
-        $this->uninstallQueries();
+
         if (!parent::uninstall()) {
             return false;
         }

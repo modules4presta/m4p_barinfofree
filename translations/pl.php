@@ -21,3 +21,6 @@ $_MODULE['<{m4p_barinfofree}prestashop>m4p_barinfofree_630f6dc397fe74e52d5189e2c
 $_MODULE['<{m4p_barinfofree}prestashop>m4p_barinfofree_2d7f45be51cde9917fa6ab85ee61a1a3'] = 'Wymagane pola są puste';
 $_MODULE['<{m4p_barinfofree}prestashop>m4p_barinfofree_c217788de00a43ace519cbc276db7b9d'] = 'Zapisano ustawienia';
 $_MODULE['<{m4p_barinfofree}prestashop>modulesforpresta_49705cd8f1b46de13cd7be0446384230'] = 'Wymagania';
+$_MODULE['<{m4p_barinfofree}prestashop>m4p_ads_bd2dc943562eb54cabd93642a5e59384'] = 'Sprawdź wersje PRO modułu Bar info';
+$_MODULE['<{m4p_barinfofree}prestashop>m4p_ads_146ffe2fd9fa5bec3b63b52543793ec7'] = 'Zobacz więcej';
+$_MODULE['<{m4p_barinfofree}prestashop>m4p_ads_141da8be69585eb1d0652b080d08183f'] = 'Modules4Presta Polecane moduły.';
