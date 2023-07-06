@@ -2,7 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
-$_MODULE['<{m4p_barinfofree}prestashop>m4p_barinfofree_208c4959ca4b4f0b2f8b81e055f87808'] = 'Pesek informacyjny (Darmowa wersja)';
+$_MODULE['<{m4p_barinfofree}prestashop>m4p_barinfofree_208c4959ca4b4f0b2f8b81e055f87808'] = 'Pasek informacyjny (Darmowa wersja)';
 $_MODULE['<{m4p_barinfofree}prestashop>m4p_barinfofree_c667dd952ef65883e6612e07b43d783a'] = 'Moduł umożliwia dodanie paska z ustawioną wiadomością. ';
 $_MODULE['<{m4p_barinfofree}prestashop>m4p_barinfofree_bcb6d40934c0323ed043a2a038602020'] = 'Sprawdź wersje PRO';
 $_MODULE['<{m4p_barinfofree}prestashop>m4p_barinfofree_51ac4bf63a0c6a9cefa7ba69b4154ef1'] = 'Ustawienia';

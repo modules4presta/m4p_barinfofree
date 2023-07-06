@@ -12,7 +12,7 @@ class m4p_barinfofree extends Module
     {
         $this->name = 'm4p_barinfofree';
         $this->tab = 'front_office_features';
-        $this->version = '1.1.5';
+        $this->version = '1.1.7';
         $this->author = 'Modules4Presta.io';
         $this->need_instance = 0;
         $this->_path = _PS_MODULE_DIR_.$this->name;
@@ -25,7 +25,7 @@ class m4p_barinfofree extends Module
         parent::__construct();
 
         $this->displayName = $this->l('Top info bar FREE');
-        $this->description = $this->l('Module add top bar with information ').'<a href="https://modules4presta.io/index.php?action=redirectToModule&fc=module&module=mfp_license_manager&controller=ajax&modulename=m4p_barinfopro">'.$this->l('Get PRO').'</a>';
+        $this->description = $this->l('Module add top bar with information ').' &nbsp;<a href="https://modules4presta.io/index.php?action=redirectToModule&fc=module&module=mfp_license_manager&controller=ajax&modulename=m4p_barinfopro" target="_blank">'.$this->l('Get PRO').'</a>';
 
 
         if (!Configuration::get('SELECT ADD')) {

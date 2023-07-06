@@ -34,9 +34,21 @@
 
 /* -- Modules for Presta default css -- */
 
+
+/* CUSTOM WAREHOUSE THEMRE*/
+.body-desktop-header-style-w-1 .m4p_barinfofree,
+.body-desktop-header-style-w-2 .m4p_barinfofree,
+.body-desktop-header-style-w-3 .m4p_barinfofree,
+.body-desktop-header-style-w-4 .m4p_barinfofree,
+.body-desktop-header-style-w-5 .m4p_barinfofree {
+    z-index: 111 !important;
+}
+
+    /* -- CUSTOM WAREHOUSE THEMRE*/
+
 .m4p_barinfofree {
     position: fixed;
-    z-index: 99;
+    z-index: 9999;
     top:0;
     left: 0;
     right: 0;
