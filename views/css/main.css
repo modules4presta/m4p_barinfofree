@@ -1,8 +1,18 @@
 /* Modules for Presta default css */
-.header-top {
+.body-desktop-header-style-w-1 .header-top,
+.body-desktop-header-style-w-2 .header-top,
+.body-desktop-header-style-w-3 .header-top,
+.body-desktop-header-style-w-4 .header-top,
+.body-desktop-header-style-w-5 .header-top {
     margin-top:40px;
 }
-
+body:not(.body-desktop-header-style-w-1 ) #header,
+body:not(.body-desktop-header-style-w-2 ) #header,
+body:not(.body-desktop-header-style-w-3 ) #header,
+body:not(.body-desktop-header-style-w-4 ) #header,
+body:not(.body-desktop-header-style-w-5 ) #header {
+    margin-top:40px;
+}
 #uninstall-popup .modal-content {
     border-radius: 0;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);

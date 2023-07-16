@@ -1,7 +1,18 @@
 $(document).on('click', '#close-display-top-bar-m4p', function() {
 
     $("#close-display-top-bar-m4p-content").hide();
-    $(".header-top").css("margin-top", "0");
+    $(".body-desktop-header-style-w-1 .header-top").css("margin-top", "0");
+    $(".body-desktop-header-style-w-2 .header-top").css("margin-top", "0");
+    $(".body-desktop-header-style-w-3 .header-top").css("margin-top", "0");
+    $(".body-desktop-header-style-w-4 .header-top").css("margin-top", "0");
+    $(".body-desktop-header-style-w-5 .header-top").css("margin-top", "0");
+
+    $("body:not(.body-desktop-header-style-w-1 ) #header").css("margin-top", "0");
+    $("body:not(.body-desktop-header-style-w-2 ) #header").css("margin-top", "0");
+    $("body:not(.body-desktop-header-style-w-3 ) #header").css("margin-top", "0");
+    $("body:not(.body-desktop-header-style-w-4 ) #header").css("margin-top", "0");
+    $("body:not(.body-desktop-header-style-w-5 ) #header").css("margin-top", "0");
+
 
 
     const cookieName = 'm4p_barinfofree';
