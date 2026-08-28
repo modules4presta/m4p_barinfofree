@@ -13,91 +13,77 @@
  */
 class Modules4PrestaMarketingBarInfoFree
 {
-    public static function checkServerRequirements()
+    const ADS_CACHE_KEY = 'm4p_barinfofree_ads_cache';
+    const ADS_CACHE_TIME_KEY = 'm4p_barinfofree_ads_cache_time';
+    const ADS_CACHE_LIFETIME = 86400;
+
+    public static function getAdsFromModules4Presta()
     {
-        $ionCubeLoaderEnabled = extension_loaded('ionCube Loader');
-        $phpVersion = phpversion();
-        $prestashopVersion = _PS_VERSION_;
+        $ads = self::fetchAds();
 
-        if ($ionCubeLoaderEnabled && version_compare($phpVersion, '7.0.0', '>=') && version_compare($prestashopVersion, '1.7.0.0', '>=')) {
-            return 'Server meets the requirements';
-        } else {
-
-            $requirements = [];
-
-            if (!$ionCubeLoaderEnabled) {
-                $requirements[] = [
-                    'name' => 'IonCube Loader',
-                    'status' => 0
-                ];
-            }
-            else {
-                $requirements[] = [
-                    'name' => 'IonCube Loader',
-                    'status' => 1
-                ];
-            }
-
-            if (version_compare($phpVersion, '7.3.0', '<')) {
-                $requirements[] = [
-                    'name' => 'PHP min 7.3.0',
-                    'status' => 0
-                ];
-            }
-            else {
-                $requirements[] = [
-                    'name' => 'PHP min 7.3.0',
-                    'status' => 1
-                ];
-            }
-
-            if (version_compare($prestashopVersion, '1.7.0.0', '<')) {
-
-                $requirements[] = [
-                    'name' => 'PrestaShop version is min requirements 1.7.0.0',
-                    'status' => 0
-                ];
-            }
-            else {
-                $requirements[] = [
-                    'name' => 'PrestaShop version is min requirements 1.7.0.0',
-                    'status' => 0
-                ];
-            }
-
-            return $requirements;
+        foreach ($ads as &$module) {
+            $module['price_formatted'] = self::formatPrice(isset($module['price']) ? (float) $module['price'] : 0);
         }
-    }
-    public static function getAdsFromModules4Presta(){
+        unset($module);
 
+        return $ads;
+    }
+
+    protected static function fetchAds()
+    {
+        $cached = self::getCachedAds();
+        $cachedAt = (int) Configuration::get(self::ADS_CACHE_TIME_KEY);
+
+        if ($cached !== null && $cachedAt > time() - self::ADS_CACHE_LIFETIME) {
+            return $cached;
+        }
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://modules4presta.io/index.php?action=getAdsForModul&fc=module&module=mfp_license_manager&controller=ajax&modulename='.urlencode('m4P_barinfofree'),
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
+            CURLOPT_MAXREDIRS => 3,
+            CURLOPT_CONNECTTIMEOUT => 2,
+            CURLOPT_TIMEOUT => 3,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-
         ));
 
         $response = curl_exec($curl);
-
         curl_close($curl);
 
-        return json_decode($response,true);
+        $ads = ($response !== false) ? json_decode($response, true) : null;
+        if (!is_array($ads)) {
+            return ($cached !== null) ? $cached : array();
+        }
 
+        Configuration::updateValue(self::ADS_CACHE_KEY, json_encode($ads));
+        Configuration::updateValue(self::ADS_CACHE_TIME_KEY, time());
+
+        return $ads;
     }
-    public function getRequaiermentsTemplate() {
 
-        $this->context->smarty->assign([
-            'requaierments' => $this->checkServerRequirements(),
+    protected static function getCachedAds()
+    {
+        $cache = Configuration::get(self::ADS_CACHE_KEY);
+        if (!$cache) {
+            return null;
+        }
 
-        ]);
+        $ads = json_decode($cache, true);
 
-        return $this->content = $this->context->smarty->fetch(_PS_MODULE_DIR_ . 'm4p_license_manager/views/templates/admin/modulesforpresta.tpl');
+        return is_array($ads) ? $ads : null;
+    }
+
+    protected static function formatPrice($price)
+    {
+        $context = Context::getContext();
+
+        if (isset($context->currentLocale, $context->currency) && $context->currentLocale && $context->currency) {
+            return $context->currentLocale->formatPrice($price, $context->currency->iso_code);
+        }
+
+        return Tools::displayPrice($price);
     }
 }
