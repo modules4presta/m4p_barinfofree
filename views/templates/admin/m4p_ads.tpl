@@ -1,11 +1,11 @@
 <div class="panel">
     <b>
-
         {l s='Please check the PRO version of the Bar info module.'  mod='m4p_barinfofree'}
         <a href="https://modules4presta.io/index.php?action=redirectToModule&fc=module&module=mfp_license_manager&controller=ajax&modulename=m4p_barinfopro" target="_blank">{l s='Show more'  mod='m4p_barinfofree'}</a>
     </b>
 </div>
 
+{if isset($modules_ads) && $modules_ads}
 <div class="panel">
     <div class="panel-heading" style="background:#2d2d2d;color:#fff;">
         <img class="logo img-fluid" src="https://modules4presta.io/img/logo-1686239238.jpg" alt="Modules4Presta.io" width="200" height="50">
@@ -13,21 +13,21 @@
     </div>
     <div class="row">
         {foreach $modules_ads as $module}
-            {if $module.name[1]}
+            {if isset($module.name[1]) && $module.name[1]}
                 <div class="col-12 col-md-3">
-                    <a href="{$module.link}" target="_blank">
-                        <img src="https://{$module.image_link}" alt="{$module.name[1]}">
-                        <h4 style="color:#000;">{$module.name[1]}</h4>
+                    <a href="{$module.link|escape:'html':'UTF-8'}" target="_blank">
+                        <img src="https://{$module.image_link|escape:'html':'UTF-8'}" alt="{$module.name[1]|escape:'html':'UTF-8'}">
+                        <h4 style="color:#000;">{$module.name[1]|escape:'html':'UTF-8'}</h4>
 
                         {if $module.price == 0}
                             <p style="color:#000;">GRATIS</p>
                         {else}
-                            <p style="color:#000;">{Tools::displayPrice($module.price)}</p>
+                            <p style="color:#000;">{$module.price_formatted|escape:'html':'UTF-8'}</p>
                         {/if}
                     </a>
                 </div>
             {/if}
-
         {/foreach}
     </div>
 </div>
+{/if}
