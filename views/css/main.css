@@ -13,39 +13,10 @@ body:not(.body-desktop-header-style-w-4 ) #header,
 body:not(.body-desktop-header-style-w-5 ) #header {
     margin-top:40px;
 }
-#uninstall-popup .modal-content {
-    border-radius: 0;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-
-#uninstall-popup .modal-header {
-    background-color: #dc3545;
-    color: #fff;
-    border-bottom: none;
-}
-
-#uninstall-popup .modal-footer {
-    border-top: none;
-}
-
-#uninstall-popup .modal-footer button {
-    border-radius: 0;
-}
-
-#uninstall-popup .modal-footer button.btn-danger {
-    background-color: #dc3545;
-    border-color: #dc3545;
-}
-
-#uninstall-popup .modal-footer button.btn-danger:hover {
-    background-color: #c82333;
-    border-color: #bd2130;
-}
-
 /* -- Modules for Presta default css -- */
 
 
-/* CUSTOM WAREHOUSE THEMRE*/
+/* CUSTOM WAREHOUSE THEME */
 .body-desktop-header-style-w-1 .m4p_barinfofree,
 .body-desktop-header-style-w-2 .m4p_barinfofree,
 .body-desktop-header-style-w-3 .m4p_barinfofree,
@@ -53,8 +24,7 @@ body:not(.body-desktop-header-style-w-5 ) #header {
 .body-desktop-header-style-w-5 .m4p_barinfofree {
     z-index: 111 !important;
 }
-
-    /* -- CUSTOM WAREHOUSE THEMRE*/
+/* -- CUSTOM WAREHOUSE THEME */
 
 .m4p_barinfofree {
     position: fixed;

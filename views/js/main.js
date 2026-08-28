@@ -1,29 +1,40 @@
-$(document).on('click', '#close-display-top-bar-m4p', function() {
+(function () {
+    'use strict';
 
-    $("#close-display-top-bar-m4p-content").hide();
-    $(".body-desktop-header-style-w-1 .header-top").css("margin-top", "0");
-    $(".body-desktop-header-style-w-2 .header-top").css("margin-top", "0");
-    $(".body-desktop-header-style-w-3 .header-top").css("margin-top", "0");
-    $(".body-desktop-header-style-w-4 .header-top").css("margin-top", "0");
-    $(".body-desktop-header-style-w-5 .header-top").css("margin-top", "0");
+    var HEADER_SELECTORS = '.header-top, #header';
 
-    $("body:not(.body-desktop-header-style-w-1 ) #header").css("margin-top", "0");
-    $("body:not(.body-desktop-header-style-w-2 ) #header").css("margin-top", "0");
-    $("body:not(.body-desktop-header-style-w-3 ) #header").css("margin-top", "0");
-    $("body:not(.body-desktop-header-style-w-4 ) #header").css("margin-top", "0");
-    $("body:not(.body-desktop-header-style-w-5 ) #header").css("margin-top", "0");
+    function setHeaderOffset(value) {
+        document.querySelectorAll(HEADER_SELECTORS).forEach(function (element) {
+            element.style.marginTop = value;
+        });
+    }
 
+    function adjustOffsetToBarHeight() {
+        var bar = document.getElementById('close-display-top-bar-m4p-content');
+        if (bar) {
+            setHeaderOffset(bar.offsetHeight + 'px');
+        }
+    }
 
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', adjustOffsetToBarHeight);
+    } else {
+        adjustOffsetToBarHeight();
+    }
 
-    const cookieName = 'm4p_barinfofree';
-    const cookieValue = '1';
-    const expirationDays = 7;
+    document.addEventListener('click', function (event) {
+        if (!event.target.closest('#close-display-top-bar-m4p')) {
+            return;
+        }
 
-    // Obliczenie daty wygaśnięcia pliku cookie
-    let expirationDate = new Date();
-    expirationDate.setDate(expirationDate.getDate() + expirationDays);
+        var bar = document.getElementById('close-display-top-bar-m4p-content');
+        if (bar) {
+            bar.style.display = 'none';
+        }
+        setHeaderOffset('0');
 
-    // Ustawienie pliku cookie
-    document.cookie = cookieName + '=' + cookieValue + '; expires=' + expirationDate.toUTCString() + '; path=/';
-
-});
+        var expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + 7);
+        document.cookie = 'm4p_barinfofree=1; expires=' + expirationDate.toUTCString() + '; path=/; SameSite=Lax';
+    });
+})();
