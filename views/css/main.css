@@ -1,0 +1,61 @@
+/*
+ * m4p_barinfofree
+ *
+ * @author    Modules4Presta <contact@modules4presta.io>
+ * @copyright 2026 Nice Code sp. z o.o. (Modules4Presta)
+ * @license   https://opensource.org/licenses/MIT MIT License
+ */
+
+/* Modules for Presta default css */
+.body-desktop-header-style-w-1 .header-top,
+.body-desktop-header-style-w-2 .header-top,
+.body-desktop-header-style-w-3 .header-top,
+.body-desktop-header-style-w-4 .header-top,
+.body-desktop-header-style-w-5 .header-top {
+    margin-top:40px;
+}
+body:not(.body-desktop-header-style-w-1 ) #header,
+body:not(.body-desktop-header-style-w-2 ) #header,
+body:not(.body-desktop-header-style-w-3 ) #header,
+body:not(.body-desktop-header-style-w-4 ) #header,
+body:not(.body-desktop-header-style-w-5 ) #header {
+    margin-top:40px;
+}
+/* -- Modules for Presta default css -- */
+
+
+/* CUSTOM WAREHOUSE THEME */
+.body-desktop-header-style-w-1 .m4p_barinfofree,
+.body-desktop-header-style-w-2 .m4p_barinfofree,
+.body-desktop-header-style-w-3 .m4p_barinfofree,
+.body-desktop-header-style-w-4 .m4p_barinfofree,
+.body-desktop-header-style-w-5 .m4p_barinfofree {
+    z-index: 111 !important;
+}
+/* -- CUSTOM WAREHOUSE THEME */
+
+.m4p_barinfofree {
+    position: fixed;
+    z-index: 9999;
+    top:0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #000;
+}
+.m4p_barinfofree--content {
+    text-align: center;
+    padding: 10px;
+}
+.m4p_barinfofree--content p {
+    margin-bottom: 0;
+}
+#close-display-top-bar-m4p {
+    position:absolute;
+    right:20px;
+    top:10px;
+    background:transparent;
+    outline:0;
+    border:0;
+    cursor:pointer;
+}

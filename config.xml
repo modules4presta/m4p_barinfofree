@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>m4p_barinfofree</name>
+	<displayName><![CDATA[M4P Top Info Bar]]></displayName>
+	<version><![CDATA[2.0.0]]></version>
+	<description><![CDATA[Shows a bar across the top of the shop with a message you set.]]></description>
+	<author><![CDATA[Modules4Presta]]></author>
+	<tab><![CDATA[front_office_features]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>0</need_instance>
+</module>

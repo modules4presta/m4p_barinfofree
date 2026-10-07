@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="module" source-language="en-US" target-language="pl-PL" datatype="plaintext">
+    <body>
+      <trans-unit id="53ba9105ecd31ffd1666aacbcbc2b3d2">
+        <source>Top info bar</source>
+        <target>Pasek informacyjny</target>
+      </trans-unit>
+      <trans-unit id="cbdf0f5600e2b688cea4a341d7fdd57a">
+        <source>Shows a bar across the top of the shop with a message you set.</source>
+        <target>Pokazuje na górze sklepu pasek z komunikatem, który ustawisz.</target>
+      </trans-unit>
+      <trans-unit id="984107e79d7bfafa8af1023bc7dd2ebb">
+        <source>No bar text provided</source>
+        <target>Nie ustawiono treści paska</target>
+      </trans-unit>
+      <trans-unit id="f4f70727dc34561dfde1a3c529b6205c">
+        <source>Settings</source>
+        <target>Ustawienia</target>
+      </trans-unit>
+      <trans-unit id="0c21931883cb0b5f7395de73cf13a8ac">
+        <source>Bar text</source>
+        <target>Treść paska</target>
+      </trans-unit>
+      <trans-unit id="c4943062b634c56348c67fdebba808eb">
+        <source>Font size</source>
+        <target>Wielkość czcionki</target>
+      </trans-unit>
+      <trans-unit id="35d6fefc63b694ec63c45b8960271162">
+        <source>In pixels.</source>
+        <target>W pikselach.</target>
+      </trans-unit>
+      <trans-unit id="3749c7343d912a50307df6ac9fbf22cb">
+        <source>Text colour</source>
+        <target>Kolor tekstu</target>
+      </trans-unit>
+      <trans-unit id="6b98824e91091956b1bcd12233c2e0f2">
+        <source>Enter a hex code.</source>
+        <target>Podaj kod szesnastkowy.</target>
+      </trans-unit>
+      <trans-unit id="e9d930048194c171569863062d8ade52">
+        <source>Bar colour</source>
+        <target>Kolor paska</target>
+      </trans-unit>
+      <trans-unit id="58efa3f891e50a22ac1b8f7863cff24a">
+        <source>Let visitors close the bar</source>
+        <target>Pozwól zamknąć pasek</target>
+      </trans-unit>
+      <trans-unit id="ccb090fc480598e909422711977e36bb">
+        <source>Closing is remembered in a cookie, so list this module among your functional cookies.</source>
+        <target>Zamknięcie zapisuje się w ciasteczku — wpisz ten moduł do ciasteczek funkcjonalnych.</target>
+      </trans-unit>
+      <trans-unit id="521c36a31c2762741cf0f8890cbe05e3">
+        <source>On</source>
+        <target>Tak</target>
+      </trans-unit>
+      <trans-unit id="d15305d7a4e34e02489c74a5ef542f36">
+        <source>Off</source>
+        <target>Nie</target>
+      </trans-unit>
+      <trans-unit id="c9cc8cce247e49bae79f15173ce97354">
+        <source>Save</source>
+        <target>Zapisz</target>
+      </trans-unit>
+      <trans-unit id="630f6dc397fe74e52d5189e2c80f282b">
+        <source>Back to list</source>
+        <target>Powrót do listy</target>
+      </trans-unit>
+      <trans-unit id="b878b6677aff2af5d54183dc238c9640">
+        <source>Bar text cannot be empty.</source>
+        <target>Treść paska nie może być pusta.</target>
+      </trans-unit>
+      <trans-unit id="10f22ae47887b3f576d9eda8182dc0b8">
+        <source>The bar colour must be a valid hex colour.</source>
+        <target>Kolor paska musi być poprawnym kodem szesnastkowym.</target>
+      </trans-unit>
+      <trans-unit id="18eb057559d0fab772da622451d4b43e">
+        <source>The text colour must be a valid hex colour.</source>
+        <target>Kolor tekstu musi być poprawnym kodem szesnastkowym.</target>
+      </trans-unit>
+      <trans-unit id="b424f676b7745b12e7825addaa81dc13">
+        <source>The font size must be a positive number.</source>
+        <target>Wielkość czcionki musi być liczbą dodatnią.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
